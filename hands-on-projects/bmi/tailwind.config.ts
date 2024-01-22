@@ -31,10 +31,15 @@ const config: Config = {
       // => @media (min-width: 1536px) { ... }
     },
     fontFamily: {
-      sans: ['Graphik', 'sans-serif'],
-      serif: ['Merriweather', 'serif'],
+      sans: [
+        '"Inter var", sans-serif',
+        {
+          fontFeatureSettings: '"cv11", "ss01"',
+          fontVariationSettings: '"opsz" 32'
+        },
+      ],
     },
   },
-  plugins: [],
+  plugins: [require("daisyui")],
 }
 export default config
