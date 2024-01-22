@@ -2,10 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
-
-.bmiCal{
-  /* background: rgb(247,255,254); */
-  background: linear-gradient(90deg, rgba(247,255,254,1) 40%, rgba(0,142,181,0.6) 120%);
-  max-width: 100%; 
-  height: 40vh;
+body{
+  margin: 0;
 }
+
+.bmiCal :first-child{
+  background: linear-gradient(90deg, rgba(247,255,254,1) 40%, rgba(0,142,181,0.4) 120%);
+}
+
