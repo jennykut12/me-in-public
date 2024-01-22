@@ -6,7 +6,7 @@ body{
   margin: 0;
 }
 
-.bmiCal :first-child{
+.bmiCal{
   background: linear-gradient(90deg, rgba(247,255,254,1) 40%, rgba(0,142,181,0.4) 120%);
 }
 
