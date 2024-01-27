@@ -11,12 +11,14 @@ module.exports = {
     },
     colors: {
       'yellow': '#F5BF3D',
+      'black':'#0D062D',
       'red': '#FF1F7D',
       'blue': '#54C5EB',
       'purple': '#6160DC',
       'green': '#00AC56',
       'sidebar': '#F7F8FA',
       'sidebar-border': '#EBECF2',
+      'grey': '#898989',
       'gray-50': '#FAFAFA',
       'gray-100': '#F5F5F5',
       'gray-200': '#E5E5E5',
@@ -35,7 +37,7 @@ module.exports = {
         'sans': ['Plus Jakarta Sans', 'sans-serif'],
       },
       fontWeight: {
-        'regular': 400,
+        'normal': 400,
         'medium': 500,
         'semibold': 600,
       },

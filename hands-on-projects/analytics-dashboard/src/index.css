@@ -2,7 +2,125 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
+App {
   margin: 0;
   background: '#A3A3A3' !important;
+  color: '#0D062D';
 }
+
+
+/* .input[type=range] { */
+  /*-webkit-appearance: none; /* Hides the slider so that custom slider can be made */
+  /*width: 100%; /* Specific width is required for Firefox. */
+  /*background:'#F5F5F5'; /* Otherwise white in Chrome */
+  /* height: 12px;
+  
+} */
+
+.input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+}
+
+.input[type=range]:focus {
+  outline: none;
+  border: none;
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 12px;
+  cursor: pointer;
+  background: #F5F5F5;
+  border-radius:40px ;
+}
+
+input[type=range] {
+  --range: calc(var(--max) - var(--min));
+  --ratio: calc((var(--value) - var(--min)) / var(--range));
+  --sx: calc(0.5 * 10px + var(--ratio) * (100% - 10px));
+}
+/* .input {
+  -webkit-appearance: none;
+  appearance: none; 
+  width: 100%;
+  cursor: pointer;
+  outline: none;
+  overflow: hidden;
+  border-radius: 16px;
+} */
+
+/* .input::-webkit-slider-runnable-track {
+  height: 15px;
+  background: #ccc;
+  border-radius: 16px;
+} */
+
+/* .input::-moz-range-track {
+  height: 15px;
+  background: #ccc;
+  border-radius: 16px;
+} */
+
+.input::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none; 
+  height: 15px;
+  width: 1px;
+  background-color: #F80B00;
+  border-radius: 50%;
+  border: 2px solid #f50;
+} 
+
+
+input[type=range]:hover::-webkit-slider-runnable-track {
+  color: #f50;
+}
+/* .input::-moz-range-thumb {
+  height: 15px;
+  width: 15px;
+  background-color: #f50;
+  border-radius: 50%;
+  border: 1px solid #f50;
+  box-shadow: -407px 0 0 400px #f50;
+} */
+/* input[type=range]:focus::-webkit-slider-runnable-track {
+  background: #367ebd;
+} */
+
+/* input[type=range]::-moz-range-track {
+  width: 100%;
+  height: 8.4px;
+  cursor: pointer;
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+  background: #3071a9;
+  border-radius: 1.3px;
+  border: 0.2px solid #010101;
+} */
+
+/* input[type=range]::-ms-track {
+  width: 100%;
+  height: 8.4px;
+  cursor: pointer;
+  background: transparent;
+  border-color: transparent;
+  border-width: 16px 0;
+  color: transparent;
+} */
+/* input[type=range]::-ms-fill-lower {
+  background: #2a6495;
+  border: 0.2px solid #010101;
+  border-radius: 2.6px;
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+} */
+/* input[type=range]:focus::-ms-fill-lower {
+  background: #3071a9;
+} */
+/* input[type=range]::-ms-fill-upper {
+  background: #3071a9;
+  border: 0.2px solid #010101;
+  border-radius: 2.6px;
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+} */
+/* input[type=range]:focus::-ms-fill-upper {
+  background: #367ebd;
+} */
