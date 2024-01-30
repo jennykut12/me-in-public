@@ -17,9 +17,9 @@ function LastOrders() {
             <th>Status</th>
             <th>Invoice</th>
           </thead>
-          {LastOrdersData.map((item, index) => {
-            return (
-              <tbody key={index}>
+          <tbody>
+          {LastOrdersData.map((item, index) => (
+              <tr key={index}>
                 <td className=" flex items-center gap-2">
                   <img src={item.img} alt="img" />
                   <p className=" text-lg font-normal"> {item.name}</p>
@@ -55,9 +55,10 @@ function LastOrders() {
                   </svg>
                   <p className=" text-base font-normal ">View</p>
                 </td>
-              </tbody>
-            );
-          })}
+              </tr>
+            )
+          )}
+          </tbody>
         </table>
       </div>
     </div>
