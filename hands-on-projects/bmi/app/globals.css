@@ -2,12 +2,25 @@
 @tailwind components;
 @tailwind utilities;
 
-body{
+body {
   margin: 0;
 }
 
-.bmiCal{
-  background: linear-gradient(90deg, rgba(247,255,254,1) 40%, rgba(0,142,181,0.4) 120%);
+.bmiCal {
+  background: linear-gradient(
+    90deg,
+    rgba(247, 255, 254, 1) 40%,
+    rgba(0, 142, 181, 0.4) 120%
+  );
+}
+.tddobg {
+  background: rgb(247, 255, 254);
+  background: linear-gradient(
+    90deg,
+    rgba(247, 255, 254, 1) 0%,
+    rgba(208, 232, 220, 1) 22%,
+    rgba(166, 240, 203, 1) 61%
+  );
 }
 
 input:focus {
@@ -18,29 +31,28 @@ input:hover {
   border: none;
   outline: none;
 }
-.Input:hover{
-  animation: 2s ease-in-out 0s  shake;
+.Input:hover {
+  animation: 2s ease-in-out 0s shake;
   animation-iteration-count: 1;
 }
-@keyframes shake{
-
+@keyframes shake {
   from {
     transform: translateX(0);
-    border-color: #54C5EB;
+    border-color: #54c5eb;
     border-width: 2px;
     filter: brightness(75%);
     background-color: transparent;
   }
   to {
     transform: translateX(1vw);
-    border-color: #54C5EB;
+    border-color: #54c5eb;
     border-width: 2px;
     filter: brightness(75%);
     background-color: transparent;
   }
 }
 
-.buttonDiv{
+.buttonDiv {
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
   border-top-right-radius: 70px;
