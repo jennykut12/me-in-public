@@ -31,7 +31,7 @@ input:hover {
   border: none;
   outline: none;
 }
-.Input:hover {
+/* .Input:hover {
   animation: 2s ease-in-out 0s shake;
   animation-iteration-count: 1;
 }
@@ -50,7 +50,7 @@ input:hover {
     filter: brightness(75%);
     background-color: transparent;
   }
-}
+} */
 
 .buttonDiv {
   border-top-left-radius: 10px;

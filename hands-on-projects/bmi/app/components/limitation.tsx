@@ -15,7 +15,7 @@ const Limitation = (props: Props) => {
   return (
     // <div className='flex float-left w-full  gap-10'>
 
-    <div className="flex pr-10 pl-20 py-20 items-center justify-center ">
+    <div className="flex lg:pr-10 lg:pl-20 py-20 ">
       <div className="flex flex-wrap gap-10 px-10">
         <div className=" flex flex-col gap-6 mx-10 pr-10 lg:w-[40vw] float-left">
           <p className=" text-5xl font-semibold">Limitations of BMI</p>
@@ -31,7 +31,7 @@ const Limitation = (props: Props) => {
           body='The development and body fat composition of girls and boys vary with age. Consequently, a childs age and gender are considered when evaluating their BMI.'
           img={<BsGenderAmbiguous className="w-[5vw] h-[5vh] text-[#FF1F7D]" />}
         />
-        <div className="flex pl-40 gap-10">        
+        <div className="flex flex-col lg:flex-row lg:pl-40 gap-10">        
         <Card
           title="Age"
           body='In aging individuals, increased body fat and muscle loss may cause BMI to underestimate body fat content.'
@@ -43,7 +43,7 @@ const Limitation = (props: Props) => {
           img={<GiMuscleUp className=" w-[5vw] h-[5vh] text-[#6160DC]"/>}
         />
         </div>
-        <div className=" flex gap-10">
+        <div className=" flex flex-col lg:flex-row gap-10">
         <Card
           title="Pregnancy"
           body='Expectant mothers experience weight gain due to their growing baby. Maintaining a healthy pre-pregnancy BMI is advisable to minimize health risks for both mother and child.'

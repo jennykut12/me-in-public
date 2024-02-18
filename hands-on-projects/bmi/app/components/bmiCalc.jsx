@@ -1,20 +1,74 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import circle from "../../public/circle.svg";
 import circle1 from "../../public/circle1.svg";
 
-const TAB1 = "Metric";
-const TAB2 = "Imperial";
+// const TAB1 = "Metric";
+// const TAB2 = "Imperial";
 
 function BmiCalc() {
+  const TAB1 = "Metric";
+  const TAB2 = "Imperial";
+
   const data = [{ name: "Metric" }, { name: "Imperial" }];
   const [tabs, setTabs] = useState(TAB1);
-  const [selected, setSelected] = useState(false);
-  const [text, setText] = useState(
-    "Enter your height and weight and you will see your BMI result here"
-  );
-  const [headerText, setHeaderText] = useState("Hello, Welcome!");
+  const [height, setHeight] = useState("");
+  const [weight, setWeight] = useState("");
+  const [bmiResult, setBmiResult] = useState(null);
+  const [headerText, setHeaderText] = useState(null);
+  const [healthyWeightRange, setHealthyWeightRange] = useState(null);
+
+  const validateNumber = (value) => {
+    value = value.trim();
+    const regex = /^\d+\.?\d*$/u;
+    if (regex.test(value)) return parseFloat(value);
+    return "";
+  };
+
+  const calculateBMI = () => {
+    const validatedHeight = validateNumber(height);
+    const validatedWeight = validateNumber(weight);
+
+    if (!validatedHeight || !validatedWeight) {
+      setBmiResult("Hello, Welcome!");
+      setHeaderText(
+        "Enter your height and weight and you will see your BMI result here"
+      );
+      setHealthyWeightRange(null);
+      return;
+    }
+
+    const heightInMeters =
+      tabs === TAB1 ? validatedHeight / 100 : validatedHeight * 0.0254;
+    const weightInKg =
+      tabs === TAB1 ? validatedWeight : validatedWeight * 0.453592;
+
+    const bmi = (weightInKg / (heightInMeters * heightInMeters)).toFixed(1);
+    setBmiResult('Your BMI is...'+''+bmi);
+
+    const weightStatus = () => {
+      if (bmi < 18.5) return "Underweight";
+      else if (bmi < 25) return "Healthy Weight";
+      else if (bmi < 30) return "Overweight";
+      else return "Obesity";
+    };
+    setHeaderText(`Your BMI suggests you are ${weightStatus()}.`);
+
+    const minWeight = (18.5 * heightInMeters * heightInMeters).toFixed(1);
+    const maxWeight = (24.9 * heightInMeters * heightInMeters).toFixed(1);
+    setHealthyWeightRange(`Your ideal weight is between ${ minWeight} - ${maxWeight} kg.`);
+  };
+
+  useEffect(() => {
+    calculateBMI();
+  }, [height, weight]);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    if (name === "height") setHeight(value);
+    if (name === "weight") setWeight(value);
+  };
 
   return (
     <div className=" mb-40">
@@ -67,12 +121,14 @@ function BmiCalc() {
                     <div className="Input  w-full flex justify-between px-4 items-center border-2 focus-within:border-2 focus-within:border-blue border-gray-400  h-12 rounded-xl ">
                       <input
                         type="text"
+                        name="height"
                         pattern="[0-9]"
                         inputMode="numeric"
-                        placeholder="0"
+                        value={height}
+                        onChange={handleChange}
                         className="Input w-full bg-transparent "
                       />
-                      <p className=" text-blue">in</p>
+                      <p className=" text-blue">cm</p>
                     </div>
                   </div>
                   <div className="flex flex-col gap-2">
@@ -82,18 +138,25 @@ function BmiCalc() {
                         type="text"
                         pattern="[0-9]"
                         inputMode="numeric"
-                        placeholder="0"
-                        className=" Input w-full bg-transparent "
+                        name="weight"
+                        value={weight}
+                        onChange={handleChange}
+                        className="Input w-full bg-transparent"
                       />
+
                       <p className=" text-blue">kg</p>
                     </div>
                   </div>
                 </div>
-                <div className="buttonDiv flex flex-col justify-center px-10 bg-blue w-full h-28 ">
-                  <p className=" text-white text-3xl text-start">
-                    {headerText}
-                  </p>
-                  <p className=" text-white text-start">{text}</p>
+                <div className="buttonDiv flex justify-center gap-10 items-center px-10 bg-blue w-full h-28 ">
+                  {bmiResult !== null && (
+                    <p className=" text-white text-xl font-medium text-start">
+                       {bmiResult}
+                    </p>
+                  )}
+                  <div>
+                  <p className=" text-white text-start">{headerText} {healthyWeightRange} </p>
+                  </div>
                 </div>
               </form>
             )}
@@ -128,10 +191,12 @@ function BmiCalc() {
                   </div>
                 </div>
                 <div className="buttonDiv flex flex-col justify-center px-10 bg-blue w-full h-28 ">
-                  <p className=" text-white text-3xl text-start">
-                    {headerText}
-                  </p>
-                  <p className=" text-white text-start">{text}</p>
+                  {bmiResult !== null && (
+                    <p className=" text-white text-start">
+                      Your BMI: {bmiResult}
+                    </p>
+                  )}
+                  <p className=" text-white text-start">Status: {headerText}</p>
                 </div>
               </form>
             )}
@@ -139,6 +204,65 @@ function BmiCalc() {
         </div>
       </div>
     </div>
+
+    // <div className="mb-40">
+    //   <div className="flex flex-col w-full">
+    //     {tabs === TAB1 && (
+    // <form className="flex flex-col gap-10 justify-center">
+    //   <div className="flex flex-col gap-2">
+    //     <label className="text-gray-600">Height (cm)</label>
+    //     <input
+    //       type="number"
+    //       name="height"
+    //       value={height}
+    //       onChange={handleChange}
+    //       className="Input w-full bg-transparent border-2 focus-within:border-2 focus-within:border-blue border-gray-400 h-12 rounded-xl px-4"
+    //     />
+    //   </div>
+    //   <div className="flex flex-col gap-2">
+    //     <label className="text-gray-600">Weight (kg)</label>
+    //     <input
+    //       type="number"
+    //       name="weight"
+    //       value={weight}
+    //       onChange={handleChange}
+    //       className="Input w-full bg-transparent border-2 focus-within:border-2 focus-within:border-blue border-gray-400 h-12 rounded-xl px-4"
+    //     />
+    //   </div>
+    // </form>
+    // )}
+    // {tabs === TAB2 && (
+    // <form className="flex flex-col gap-10 justify-center">
+    //   <div className="flex flex-col gap-2">
+    //     <label className="text-gray-600">Height (inches)</label>
+    //     <input
+    //       type="number"
+    //       name="height"
+    //       value={height}
+    //       onChange={handleChange}
+    //       className="Input w-full bg-transparent border-2 focus-within:border-2 focus-within:border-blue border-gray-400 h-12 rounded-xl px-4"
+    //     />
+    //   </div>
+    //   <div className="flex flex-col gap-2">
+    //     <label className="text-gray-600">Weight (lbs)</label>
+    //     <input
+    //       type="number"
+    //       name="weight"
+    //       value={weight}
+    //       onChange={handleChange}
+    //       className="Input w-full bg-transparent border-2 focus-within:border-2 focus-within:border-blue border-gray-400 h-12 rounded-xl px-4"
+    //     />
+    //   </div>
+    // </form>
+    // )}
+    // </div>
+    // <div className="flex flex-col items-center mt-6">
+    // {/* {bmiResult !== null && (
+    //   <p className="text-lg font-semibold mb-2">Your BMI: {bmiResult}</p>
+    // )}
+    // <p className="text-lg font-semibold">Status: {headerText}</p> */}
+    // {/* </div> */}
+    // </div>
   );
 }
 
