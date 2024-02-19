@@ -26,6 +26,7 @@ body {
 input:focus {
   border: none;
   outline: none;
+  background-color: transparent;
 }
 input:hover {
   border: none;
