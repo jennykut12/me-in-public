@@ -4,6 +4,9 @@ import React, { useState, useEffect } from "react";
 
 const BmiCalcImperial = ({ tabs, heightFt, weightLbs }) => {
   const [bmiResultImperial, setBmiResultImperial] = useState(null);
+  const [headerImperial, setHeaderImperial] = useState(null);
+  const [weightRangeImperial, setWeightRangeImperial] = useState(null);
+  const [bmiResultTextImperial, setBmiResultTextImperial] = useState(null);
   const [headerTextImperial, setHeaderTextImperial] =
     useState("Hello, Welcome!");
   const [healthyWeightRangeImperial, setHealthyWeightRangeImperial] =
@@ -25,7 +28,8 @@ const BmiCalcImperial = ({ tabs, heightFt, weightLbs }) => {
     const validatedWeight = validateNumber(weightLbs);
 
     if (!validatedHeight || !validatedWeight) {
-      setBmiResultImperial("Hello, Welcome!");
+      setBmiResultImperial("");
+      setBmiResultTextImperial("Hello, Welcome!");
       setHeaderTextImperial(
         "Enter your height and weight and you will see your BMI result here"
       );
@@ -42,7 +46,8 @@ const BmiCalcImperial = ({ tabs, heightFt, weightLbs }) => {
     // Calculate BMI
     const bmi = weightInLbs / (heightInFt * heightInFt);
 
-    setBmiResultImperial(`BMI is... (${bmi.toFixed(1)})`);
+    setBmiResultImperial(` ${bmi.toFixed(1)}`);
+    setBmiResultTextImperial(`BMI is`);
 
     const weightStatus = () => {
       if (bmi < 18.5) return "Underweight";
@@ -50,20 +55,27 @@ const BmiCalcImperial = ({ tabs, heightFt, weightLbs }) => {
       else if (bmi < 30) return "Overweight";
       else return "Obesity";
     };
-    setHeaderTextImperial(`Your BMI suggests you are ${weightStatus()}.`);
+    setHeaderTextImperial(`Your BMI suggests you are `);
+    setHeaderImperial(`${weightStatus()}.`);
 
     const minWeight = (2.20462 * 18.5 * heightInFt * heightInFt).toFixed(1);
     const maxWeight = (2.20462 * 24.9 * heightInFt * heightInFt).toFixed(1);
-    setHealthyWeightRangeImperial(
-      `Your ideal weight is between ${minWeight} - ${maxWeight} lbs.`
-    );
+    setHealthyWeightRangeImperial(`Your ideal weight is between `);
+    setWeightRangeImperial(`${minWeight} - ${maxWeight} lbs.`);
   };
 
   useEffect(() => {
     calculateBMI();
   }, [tabs, heightFt, weightLbs]);
 
-  return { bmiResultImperial, headerTextImperial, healthyWeightRangeImperial };
+  return {
+    bmiResultImperial,
+    headerTextImperial,
+    healthyWeightRangeImperial,
+    headerImperial,
+    weightRangeImperial,
+    bmiResultTextImperial,
+  };
 };
 
 export default BmiCalcImperial;
