@@ -17,10 +17,22 @@ function BmiCalc() {
   const [heightFt, setHeightFt] = useState("");
   const [weightLbs, setWeightLbs] = useState("");
 
-  const { bmiResultMetrics, headerTextMetrics, healthyWeightRangeMetrics } =
-    BmiCalcMetrics({ tabs, height, weight });
-  const { bmiResultImperial, headerTextImperial, healthyWeightRangeImperial } =
-    BmiCalcImperial({ tabs, heightFt, weightLbs });
+  const {
+    bmiResultMetrics,
+    headerTextMetrics,
+    healthyWeightRangeMetrics,
+    headerMetrics,
+    bmiResultTextMetrics,
+    weightRangeMetrics,
+  } = BmiCalcMetrics({ tabs, height, weight });
+  const {
+    bmiResultImperial,
+    headerTextImperial,
+    healthyWeightRangeImperial,
+    headerImperial,
+    weightRangeImperial,
+    bmiResultTextImperial,
+  } = BmiCalcImperial({ tabs, heightFt, weightLbs });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -105,15 +117,27 @@ function BmiCalc() {
                     </div>
                   </div>
                 </div>
-                <div className="buttonDiv flex justify-center gap-10 items-center py-10 px-10 bg-blue w-full h-28">
+                <div className="buttonDiv flex flex-col lg:flex-row gap-5 lg:items-center lg:gap-0 py-10 px-8 bg-blue w-full h-auto ">
                   {bmiResultMetrics !== null && (
-                    <p className="text-white text-base lg:text-xl font-medium text-start">
-                      {bmiResultMetrics}
-                    </p>
+                    <div className=" flex flex-col lg:w-1/2">
+                      <p className="text-white text-lg lg:text-xl font-medium ">
+                        {bmiResultTextMetrics}
+                      </p>
+                      <p className="text-white text-5xl font-semibold lg:text-6xl">
+                        {bmiResultMetrics}
+                      </p>
+                    </div>
                   )}
-                  <div>
+                  <div className="lg:w-1/2">
                     <p className="text-white text-sm lg:text-base text-start">
-                      {headerTextMetrics} {healthyWeightRangeMetrics}
+                      {headerTextMetrics}{" "}
+                      <span className=" text-lg font-semibold lg:text-xl">
+                        {headerMetrics}
+                      </span>{" "}
+                      {healthyWeightRangeMetrics}
+                    </p>
+                    <p className="text-white text-lg font-semibold lg:text-xl">
+                      {weightRangeMetrics}
                     </p>
                   </div>
                 </div>
@@ -153,15 +177,27 @@ function BmiCalc() {
                     </div>
                   </div>
                 </div>
-                <div className="buttonDiv flex justify-center gap-10 items-center py-10 px-10 bg-blue w-full h-28">
+                <div className="buttonDiv flex flex-col lg:flex-row gap-5 lg:items-center lg:gap-5  py-10 px-8 bg-blue w-full h-auto ">
                   {bmiResultImperial !== null && (
-                    <p className="text-white text-base lg:text-xl font-medium text-start">
-                      {bmiResultImperial}
-                    </p>
+                    <div className=" flex flex-col lg:w-1/2">
+                      <p className="text-white text-lg lg:text-xl font-medium ">
+                        {bmiResultTextImperial}
+                      </p>
+                      <p className="text-white text-5xl font-semibold lg:text-6xl">
+                        {bmiResultImperial}
+                      </p>
+                    </div>
                   )}
-                  <div>
+                  <div className=" lg:w-1/2">
                     <p className="text-white text-sm lg:text-base text-start">
-                      {headerTextImperial} {healthyWeightRangeImperial}
+                      {headerTextImperial}{" "}
+                      <span className=" text-lg font-semibold lg:text-xl">
+                        {headerImperial}
+                      </span>{" "}
+                      {healthyWeightRangeImperial}
+                    </p>
+                    <p className="text-white text-lg font-semibold lg:text-xl">
+                      {weightRangeImperial}
                     </p>
                   </div>
                 </div>
