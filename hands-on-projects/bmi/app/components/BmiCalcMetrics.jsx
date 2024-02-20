@@ -34,7 +34,7 @@ const BmiCalcMetrics = ({ tabs, height, weight }) => {
       tabs === "Metric" ? validatedWeight : validatedWeight * 0.453592;
 
     const bmi = (weightInKg / (heightInMeters * heightInMeters)).toFixed(1);
-    setBmiResultMetrics(`Your BMI is... (${bmi})`);
+    setBmiResultMetrics(`BMI is... (${bmi})`);
 
     const weightStatus = () => {
       if (bmi < 18.5) return "Underweight";

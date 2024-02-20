@@ -42,7 +42,7 @@ const BmiCalcImperial = ({ tabs, heightFt, weightLbs }) => {
     // Calculate BMI
     const bmi = weightInLbs / (heightInFt * heightInFt);
 
-    setBmiResultImperial(`Your BMI is... (${bmi.toFixed(1)})`);
+    setBmiResultImperial(`BMI is... (${bmi.toFixed(1)})`);
 
     const weightStatus = () => {
       if (bmi < 18.5) return "Underweight";
