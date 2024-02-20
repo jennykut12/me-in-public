@@ -32,6 +32,12 @@ input:hover {
   border: none;
   outline: none;
 }
+input:-webkit-autofill,
+input:-webkit-autofill:focus {
+    box-shadow: 0 0 0 30px white inset !important;
+    -webkit-box-shadow: 0 0 0 30px white inset !important;
+    -webkit-text-fill-color: black !important;
+}
 /* .Input:hover {
   animation: 2s ease-in-out 0s shake;
   animation-iteration-count: 1;

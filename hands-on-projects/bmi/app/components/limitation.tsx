@@ -1,12 +1,10 @@
 import React from "react";
-import data from "../components/data/limitation-data";
 import Card from "./card";
 import { BsGenderAmbiguous } from "react-icons/bs";
 import { LiaBirthdayCakeSolid } from "react-icons/lia";
 import { LuBaby } from "react-icons/lu";
 import { IoBodyOutline } from "react-icons/io5";
 import { GiMuscleUp } from "react-icons/gi";
-import { MdPolymer } from "react-icons/md";
 
 
 type Props = {};
@@ -18,7 +16,7 @@ const Limitation = (props: Props) => {
     <div className="flex lg:pr-10 lg:pl-20 py-20 ">
       <div className="flex flex-wrap gap-10 px-10">
         <div className=" flex flex-col gap-6 mx-10 pr-10 lg:w-[40vw] float-left">
-          <p className=" text-5xl font-semibold">Limitations of BMI</p>
+          <p className=" text-3xl lg:text-5xl font-semibold">Limitations of BMI</p>
           <p>
             Although BMI is often a practical indicator of healthy weight, it is
             not suited for every person. Specific groups should carefully
